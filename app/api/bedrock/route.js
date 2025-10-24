@@ -9,7 +9,7 @@ export async function POST(request) {
     const { message, sessionId } = await request.json();
 
     const client = new BedrockAgentRuntimeClient({
-      region: process.env.AWS_REGION,
+      region: process.env.BEDROCK_REGION,
     });
 
     const command = new InvokeAgentCommand({
