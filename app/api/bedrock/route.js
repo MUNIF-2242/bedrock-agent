@@ -10,6 +10,10 @@ export async function POST(request) {
 
     const client = new BedrockAgentRuntimeClient({
       region: process.env.BEDROCK_REGION,
+      credentials: {
+        accessKeyId: process.env.ACCESS_KEY_ID_AWS,
+        secretAccessKey: process.env.SECRET_ACCESS_KEY_AWS,
+      },
     });
 
     const command = new InvokeAgentCommand({
