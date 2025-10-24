@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧠 Bedrock Agent Chat App
 
-## Getting Started
+This project is a **Next.js** web application that allows you to chat with an **Amazon Bedrock Agent** using the **Bedrock Agent Runtime SDK**.  
+It provides a simple UI where users can send messages and receive AI-generated responses in real time.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Features
+
+- 💬 Real-time chat interface with Bedrock Agent
+- 🧩 Session management using unique session IDs
+- ⚡ API route integration with AWS Bedrock
+- 🔄 Loading state indicators
+- 🧱 Built using Next.js 15+ (App Router)
+
+---
+
+## 🧰 Tech Stack
+
+- **Frontend:** Next.js (React)
+- **Backend:** AWS Bedrock Agent Runtime SDK
+- **Language:** JavaScript (ES6+)
+- **Runtime:** Node.js 18+
+- **Environment:** Vercel or AWS Amplify (recommended)
+
+---
+
+## 📁 Project Structure
+
+```
+app/
+├── api/
+│ └── bedrock/
+│ └── route.js # API route for communicating with AWS Bedrock Agent
+├── page.js # Main chat UI
+├── globals.css # Add your styles here
+.env.local # Environment variables
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+````
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ⚙️ Setup & Configuration
 
-## Learn More
+### 1️⃣ Clone the repository
+```bash
+git clone https://github.com/yourusername/bedrock-agent-chat.git
+cd bedrock-agent-chat
+````
 
-To learn more about Next.js, take a look at the following resources:
+## 📁 Install dependencies
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+npm install
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Configure environment variables
 
-## Deploy on Vercel
+Create a .env.local file in the project root and add your credentials:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+AWS_REGION=us-east-1
+BEDROCK_AGENT_ID=your-agent-id
+BEDROCK_AGENT_ALIAS_ID=your-alias-id
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🛡️ Note: Never commit .env.local to version control. It contains sensitive information.
+
+## How It Works
+
+- The frontend (app/page.js) handles user input and displays the chat.
+- When you send a message, it calls the API route (/api/bedrock/route.js).
+- The API uses BedrockAgentRuntimeClient to invoke your Bedrock Agent.
+- Responses stream back and are displayed in the chat window.
+
+## Run the App
+
+Development Mode
+
+```
+npm run dev
+```
