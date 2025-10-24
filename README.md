@@ -60,7 +60,7 @@ npm install
 Create a .env.local file in the project root and add your credentials:
 
 ```
-AWS_REGION=us-east-1
+BEDROCK_REGION=us-east-1
 BEDROCK_AGENT_ID=your-agent-id
 BEDROCK_AGENT_ALIAS_ID=your-alias-id
 ```
