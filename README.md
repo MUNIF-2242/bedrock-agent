@@ -5,6 +5,10 @@ It provides a simple UI where users can send messages and receive AI-generated r
 
 ---
 
+## 🚀 System Architecture
+
+![Alt text](./public/his-agent.png)
+
 ## 🚀 Features
 
 - 💬 Real-time chat interface with Bedrock Agent
