@@ -1,13 +1,19 @@
 // app/page.js
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 
 export default function Home() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [sessionId] = useState(() => `session-${Date.now()}`);
+  const [selectedService, setSelectedService] = useState("general");
+
+  const services = [
+    { id: "wifi", name: "Wifi", icon: "📶" },
+    { id: "laundry", name: "Laundry", icon: "🧺" },
+  ];
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -28,6 +34,7 @@ export default function Home() {
         body: JSON.stringify({
           message: input,
           sessionId: sessionId,
+          service: selectedService,
         }),
       });
 
@@ -56,58 +63,86 @@ export default function Home() {
     }
   };
 
+  const handleServiceChange = (serviceId) => {
+    setSelectedService(serviceId);
+    setMessages([]);
+  };
+
   return (
-    <div className="container">
-      <div className="chat-header">
-        <h1>Bedrock Agent Chat</h1>
-        <p className="session-id">Session: {sessionId}</p>
+    <div className="main-container">
+      {/* Sidebar */}
+      <div className="sidebar">
+        <div className="sidebar-header">
+          <h1>Services</h1>
+        </div>
+        <div className="services-list">
+          {services.map((service) => (
+            <button
+              key={service.id}
+              className={`service-item ${
+                selectedService === service.id ? "active" : ""
+              }`}
+              onClick={() => handleServiceChange(service.id)}
+            >
+              <span className="service-icon">{service.icon}</span>
+              <span className="service-name">{service.name}</span>
+            </button>
+          ))}
+        </div>
       </div>
 
-      <div className="chat-messages">
-        {messages.length === 0 && (
-          <div className="empty-state">
-            <p>Start a conversation with your Bedrock agent</p>
-          </div>
-        )}
-        {messages.map((msg, idx) => (
-          <div key={idx} className={`message ${msg.role}`}>
-            <div className="message-content">
-              <strong>{msg.role === "user" ? "You" : "Agent"}:</strong>
-              <p>
-                {msg.content.split("\n").map((line, i) => (
-                  <span key={i}>
-                    {line}
-                    <br />
-                  </span>
-                ))}
-              </p>
-            </div>
-          </div>
-        ))}
+      {/* Chat Container */}
+      <div className="container">
+        <div className="chat-header">
+          <h1>Bedrock Agent Chat</h1>
+        </div>
 
-        {loading && (
-          <div className="message assistant">
-            <div className="message-content">
-              <strong>Agent:</strong>
-              <p className="loading">Thinking...</p>
+        <div className="chat-messages">
+          {messages.length === 0 && (
+            <div className="empty-state">
+              <p>Start a conversation with your Bedrock agent</p>
             </div>
-          </div>
-        )}
+          )}
+          {messages.map((msg, idx) => (
+            <div key={idx} className={`message ${msg.role}`}>
+              <div className="message-content">
+                <strong>{msg.role === "user" ? "You" : "Agent"}:</strong>
+                <p>
+                  {msg.content.split("\n").map((line, i) => (
+                    <React.Fragment key={i}>
+                      {line}
+                      {i > 0 && <br />}
+                    </React.Fragment>
+                  ))}
+                </p>
+              </div>
+            </div>
+          ))}
+
+          {loading && (
+            <div className="message assistant">
+              <div className="message-content">
+                <strong>Agent:</strong>
+                <p className="loading">Thinking...</p>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <form onSubmit={sendMessage} className="chat-input-form">
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Type your message..."
+            className="chat-input"
+            disabled={loading}
+          />
+          <button type="submit" disabled={loading} className="send-button">
+            Send
+          </button>
+        </form>
       </div>
-
-      <form onSubmit={sendMessage} className="chat-input-form">
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Type your message..."
-          className="chat-input"
-          disabled={loading}
-        />
-        <button type="submit" disabled={loading} className="send-button">
-          Send
-        </button>
-      </form>
     </div>
   );
 }
