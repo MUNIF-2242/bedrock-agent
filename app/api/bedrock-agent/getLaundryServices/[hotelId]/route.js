@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
-import Hotel from "@/src/lib/model/schema/Hotel";
-import connectDB from "@/src/lib/config/DB";
+import Hotel from "@/lib/model/schema/Hotel";
+import connectDB from "@/lib/config/DB.js";
 
 export async function GET(req, { params }) {
   console.log("➡️ [API] /getLaundryServices route hit");

@@ -1,4 +1,4 @@
-import User from "@/src/lib/model/schema/User";
+import User from "@/lib/model/schema/User";
 import { NextResponse } from "next/server";
 
 const CORS_HEADERS = {
