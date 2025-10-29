@@ -26,7 +26,7 @@ export default function Home() {
     setLoading(true);
 
     try {
-      const response = await fetch("/api/bedrock", {
+      const response = await fetch("/api/bedrock-agent/userQuery", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
