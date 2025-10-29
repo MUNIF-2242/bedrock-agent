@@ -2,14 +2,19 @@
   "name": "bedrock-agent",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "node server.js",
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
     "@aws-sdk/client-bedrock-agent-runtime": "^3.911.0",
+    "basic-auth": "^2.0.1",
+    "express": "^4.18.0",
+    "frameguard": "^4.0.0",
+    "morgan": "^1.10.1",
     "next": "15.5.6",
     "react": "19.1.0",
     "react-dom": "19.1.0"
