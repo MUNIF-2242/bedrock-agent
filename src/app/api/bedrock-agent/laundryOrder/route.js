@@ -1,4 +1,4 @@
-import LaundryOrder from "@/lib/model/schema/LaundryOrderSchema";
+import LaundryOrder from "@/src/lib/model/schema/LaundryOrderSchema";
 
 // POST /api/bedrock-agent/laundryOrder
 export async function POST(req) {

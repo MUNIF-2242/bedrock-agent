@@ -4,7 +4,7 @@ import next from "next";
 import basicAuth from "basic-auth";
 import frameguard from "frameguard";
 import morgan from "morgan";
-import connectDB from "./lib/config/DB.js";
+import connectDB from "./src/lib/config/DB.js";
 
 const dev = process.env.NODE_ENV !== "production";
 const nextApp = next({ dev });

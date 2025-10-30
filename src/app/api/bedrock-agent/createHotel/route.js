@@ -1,4 +1,4 @@
-import Hotel from "@/lib/model/schema/Hotel";
+import Hotel from "@/src/lib/model/schema/Hotel";
 import { NextResponse } from "next/server";
 
 const CORS_HEADERS = {
